@@ -97,16 +97,7 @@ Here is an overview of all the possible CLI commands:
 
 #### Author
 
-* (c) 2015, Philipp Klaus  
-  <klaus@physik.uni-frankfurt.de>  
-  Ported the software to Python, extended and packaged it.
-* (c) 2012, [Ondics GmbH](http://www.ondics.de)  
-  <githubler@ondics.de>  
-  The author of the [original scripts][l2p_bash_scripts] (written as Bash scripts + netcat & gawk)
 
 #### License
 
-GPLv3
-
-[l2p_bash_scripts]: https://github.com/ondics/lufft-l2p-script-collection
 
