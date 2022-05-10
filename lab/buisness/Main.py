@@ -1,16 +1,22 @@
+import time
+
 from lab.buisness import Measurement
 from lab.buisness.common import Constants
-
+from lab.buisness.tools import Logger
 
 if __name__ == '__main__':
 
-    print(Constants.log_file)
+    while True:
+        sleep_time = Constants.get_MeasurementTimeIntervalInSeconds()
 
-    opus20List = Constants.get_opus20_data()
-    offlineHost = []
+        opus20List = Constants.get_opus20_data()
+        offlineHost = []
 
-    for opus20 in opus20List:
-        Measurement.measure(opus20)
+        for opus20 in opus20List:
+            Measurement.measure(opus20)
+
+        Logger.print_sleeptime(sleep_time)
+
 
 """"
     # Ist das Gerät Online?
@@ -20,7 +26,6 @@ if __name__ == '__main__':
             offlineHost.append(opus20)
 
     Logger.clear_console()
-
 
     if offlineHost:
         print(f"Warnung: folgende Host sind nicht erreichbar:")

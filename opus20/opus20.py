@@ -16,11 +16,12 @@ logger = logging.getLogger(__name__)
 
 class Opus20(object):
 
-    def __init__(self, host, mac, labor, location,  port=52015, timeout=5.):
+    def __init__(self, host, channels, mac, labor, location,  port=52015, timeout=5.):
 
         self.s = None
 
         self.host = host
+        self.channels = channels
         self.mac = mac
         self.labor = labor
         self.location = location
