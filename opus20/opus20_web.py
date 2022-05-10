@@ -16,7 +16,7 @@ def main():
     parser.add_argument('host', help='hostname of the device')
     parser.add_argument('--port', '-p', type=int, help='port of the device for TCP connections')
     parser.add_argument('--timeout', '-t', type=float, help='timeout for the TCP connection')
-    parser.add_argument('--loglevel', '-l', choices=['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG'], help='log level')
+    parser.add_argument('--loglevel', '-l', choices=['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG'], help='tools level')
     parser.add_argument('--debug', '-d', action='store_true', help='enable debugging')
     args = parser.parse_args()
 

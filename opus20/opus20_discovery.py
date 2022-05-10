@@ -15,7 +15,7 @@ def main():
 
     parser = argparse.ArgumentParser(description="Discovery of Lufft OPUS20 devices on the local network")
     parser.add_argument('bind_address', default="", nargs="?", help='The IP to bind to')
-    parser.add_argument('--loglevel', '-l', default="WARNING", choices=['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG'], help='log level')
+    parser.add_argument('--loglevel', '-l', default="WARNING", choices=['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG'], help='tools level')
     args = parser.parse_args()
 
     if args.loglevel:

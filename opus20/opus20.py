@@ -16,20 +16,24 @@ logger = logging.getLogger(__name__)
 
 class Opus20(object):
 
-    def __init__(self, host, port=52015, timeout=5.):
+    def __init__(self, host, mac, labor, location,  port=52015, timeout=5.):
 
         self.s = None
 
         self.host = host
+        self.mac = mac
+        self.labor = labor
+        self.location = location
         self.port = port
         self.timeout = timeout
 
-        self.request_supported_channels()
-        self.request_device_status()
+        #self.request_supported_channels()
+        #self.request_device_status()
 
     def connect(self):
         try:
             self.s = socket.create_connection((self.host, self.port), self.timeout)
+
         except (ConnectionRefusedError, socket.gaierror) as e:
             raise Opus20ConnectionException("Connection to host {} could not be established: {}".format(self.host, e))
 
@@ -414,11 +418,11 @@ class Frame(object):
           Object(cmd=0x23, payload_check=[],            payload_length=   2, name='online single channel request'),
           Object(cmd=0x23, payload_check=[0x00,],       payload_length=   8, name='online single channel answer',               func=self.online_data_request_single),
           #
-          Object(cmd=0x24, payload_check=[0x10,],       payload_length=  10, name='initiate log download request'),
-          Object(cmd=0x24, payload_check=[0x00, 0x10],  payload_length=  10, name='initiate log download answer'),
+          Object(cmd=0x24, payload_check=[0x10,],       payload_length=  10, name='initiate tools download request'),
+          Object(cmd=0x24, payload_check=[0x00, 0x10],  payload_length=  10, name='initiate tools download answer'),
           #
-          Object(cmd=0x24, payload_check=[0x20, 0x01],  payload_length=   2, name='log download data request'),
-          Object(cmd=0x24, payload_check=[0x00, 0x20],  payload_length=None, name='log download data answer',                   func=self.get_log_data),
+          Object(cmd=0x24, payload_check=[0x20, 0x01],  payload_length=   2, name='tools download data request'),
+          Object(cmd=0x24, payload_check=[0x00, 0x20],  payload_length=None, name='tools download data answer',                   func=self.get_log_data),
           #
           Object(cmd=0x27, payload_check=[],            payload_length=   8, name='update time request'),
           Object(cmd=0x27, payload_check=[0x00,],       payload_length=   1, name='update time answer'),
@@ -462,8 +466,8 @@ class Frame(object):
           Object(cmd=0x45, payload_check=[0x43,],       payload_length=   2, name='[w] enable/disable logging request'),
           Object(cmd=0x45, payload_check=[0x00,],       payload_length=   1, name='[w] enable/disable logging answer'),
           #
-          Object(cmd=0x46, payload_check=[],            payload_length=   0, name='clear log request'),
-          Object(cmd=0x46, payload_check=[0x00,],       payload_length=   1, name='clear log answer'),
+          Object(cmd=0x46, payload_check=[],            payload_length=   0, name='clear tools request'),
+          Object(cmd=0x46, payload_check=[0x00,],       payload_length=   1, name='clear tools answer'),
           #
           ## Commands I don't understand right now:
           # 31/31 : channel group specific, a 2+1+1+n-byte answer, the n-bytes are counting upwards
@@ -587,7 +591,7 @@ class Frame(object):
     def get_log_data(self):
         props = self.props
 
-        assert props.length >= 21, 'message too short for a log data message'
+        assert props.length >= 21, 'message too short for a tools data message'
         assert props.cmd == 0x24 and props.payload[1] == 0x20
         self.assert_status()
 

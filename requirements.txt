@@ -1,0 +1,4 @@
+opus20~=1.0.1
+bottle~=0.12.19
+pypandoc~=1.7.5
+setuptools~=57.0.0

@@ -54,7 +54,7 @@ class Opus20FakeServer(object):
         return output_frame
 
     def feed_with_communication_log(self, l2p_frames_file):
-        """ Feed the fake server with l2p frames stored in a communication log file """
+        """ Feed the fake server with l2p frames stored in a communication tools file """
         num_incoming, num_outgoing = 0, 0
         num_short, num_long = 0, 0
 
