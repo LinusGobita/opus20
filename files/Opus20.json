@@ -1,15 +1,23 @@
 [
     {
-    "host" : "192.168.1.144",
+    "host" : "192.168.1.145",
+    "channels": [100, 200, 110, 300, 10020],
     "mac" : "00:00:00:00:00",
     "labor" : "Hochspannung",
     "location" : "Halle 1"
     },
    {
-    "host" : "192.168.1.145",
+    "host" : "192.168.1.151",
+    "channels": [100, 200, 110, 300],
     "mac" : "00:00:00:00:00",
     "labor" : "Hochspannung",
+    "location" : "Halle 2"
+    },
+   {
+    "host" : "192.168.1.144",
+    "channels": [100, 200, 110, 300],
+    "mac" : "00:00:00:00:00",
+    "labor" : "Mechaniklabor",
     "location" : "Halle 1"
     }
-
 ]
