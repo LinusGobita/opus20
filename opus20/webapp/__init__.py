@@ -15,7 +15,7 @@ from bottle import Bottle, request, response, view, static_file, TEMPLATE_PATH, 
 
 logger = logging.getLogger(__name__)
 
-# Find out where our resource files are located:
+# Find out where our resource opus20_settings are located:
 try:
     from pkg_resources import resource_filename, Requirement, require
     PATH = resource_filename("opus20", "webapp")

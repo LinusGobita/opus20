@@ -1,12 +1,22 @@
 import logging
+import os
 import time
 import sys
 from datetime import datetime
-
 from lab.business.common import Constants
 
-now = datetime.now()
-current_time = now. strftime("%H:%M:%S")
+
+logfile_path = ""
+
+def create_logfile(path):
+    logfile_path = path
+    os.makedirs(path)
+
+
+
+def get_time():
+    now = datetime.now()
+    return now.strftime("%H:%M:%S")
 
 def log_error(class_name, err, id):
     logging.warning(f"Error:{id} Klassen: {class_name} error: {err} <=================")
@@ -19,7 +29,7 @@ def log_measure(host, channel, value):
     logging.info(f"Measure:{id} host: {host}, channel, {channel}, value, {value}")
 
 def print_measure(host, channel, value):
-    print(f"{current_time}     Measure: host: {host}, channel, {channel}, value, {value}")
+    print(f"{get_time()}     Measure: host: {host}, channel, {channel}, value, {value}")
 
 def print_sleeptime(timer):
     t = timer
@@ -30,6 +40,6 @@ def print_sleeptime(timer):
         print(end='\r')
         t -= 1
     print("------------------------------------------------------------")
-    print(f'{current_time} New measure')
+    print(f'{get_time()} New measure')
     print("------------------------------------------------------------")
 

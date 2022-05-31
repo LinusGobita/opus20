@@ -1,0 +1,28 @@
+[
+  {
+    "setting_time": [
+      {
+        "day_of_week": "mon-sun",
+        "hour": "0-23",
+        "minute": "0-59/1",
+        "start_date": "2022-05-1 12:00:00",
+        "timezone": "UTC"
+      }
+    ]
+  },
+  {
+    "database": [
+      {
+        "host": "192.168.1.185",
+        "name": "Wet",
+        "user": "sa",
+        "passwort": "fgmkl!203svedsr",
+        "driver" : "{ODBC Driver 18 for SQL Server}",
+        "trusted_connection": "yes"
+      }
+    ]
+  }
+]
+
+
+
