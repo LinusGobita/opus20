@@ -5,31 +5,28 @@ import pyodbc
 from lab.business.common import Constants
 
 database_conn = Constants.get_settings_database()
-table_name = ""
-
 
 
 def connect_ms_sql():
-    database_conn = Constants.get_settings_database()
     try:
         conn = pyodbc.connect(
-                            f"Driver={database_conn[4]};"
-                            f"Server={database_conn[0]};"
-                            f"Database={database_conn[1]};"
-                            f"uid={database_conn[2]};"
-                            f"pwd={database_conn[3]};"
-                            f"TrustServerCertificate={database_conn[5]};"
+            f"Driver={database_conn[4]};"
+            f"Server={database_conn[0]};"
+            f"Database={database_conn[1]};"
+            f"uid={database_conn[2]};"
+            f"pwd={database_conn[3]};"
+            f"TrustServerCertificate={database_conn[5]};"
         )
-
         cursor = conn.cursor()
+        return cursor
     except Exception as err:
-        logging.warning("Database | Connection")
+        logging.error(err)
 
-    return cursor
 
 def write_time_to_db(datetime):
     try:
         cursor = connect_ms_sql()
+        logging.debug("Connect with db")
         query = cursor.execute(f'''
         use {database_conn[1]}
                         BEGIN
@@ -42,8 +39,10 @@ def write_time_to_db(datetime):
                            ''')
         query.commit()
         cursor.close()
+        logging.debug("Disconnect with db")
     except Exception as err:
-        logging.warning("Database | Time |" + err)
+        logging.error(err)
+
 
 def write_measure_to_db(opus20, datetime, measures):
     try:
@@ -63,11 +62,9 @@ def write_measure_to_db(opus20, datetime, measures):
                            ''')
         query.commit()
         cursor.close()
-        logging.info(f"Database | Write Measure | {opus20.host}")
-        print(f"{datetime} |Database |Write Measure | {opus20.host}")
+        logging.debug(f"save measre from host {opus20.host}")
     except Exception as err:
-        logging.warning("Database | Write Measure |" + err)
-
+        logging.warning(err)
 
 
 """"
