@@ -1,5 +1,8 @@
+import setuptools
 import sys
 from cx_Freeze import setup, Executable
+
+
 
 # Dependencies are automatically detected, but it might need fine tuning.
 # "packages": ["os"] is used as example only
@@ -15,5 +18,6 @@ setup(
     version="0.1",
     description="Save Opus20 Data to Database!",
     options={"build_exe": build_exe_options},
-    executables=[Executable("main.py", base=base)],
+    executables=[Executable("Main.py", base=base)],
 )
+
